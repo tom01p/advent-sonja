@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Adventskalender 2025 für Sabine</title>
+<title>Adventskalender 2025 für Sonja</title>
 
 <style>
 body {
@@ -81,7 +81,7 @@ img {
 
 <body>
 
-<h1>Adventskalender 2025 für Sabine</h1>
+<h1>Adventskalender 2025 für Sonja</h1>
 
 <!-- Random generierte Türchen -->
 <div class="grid" id="kalender"></div>
@@ -91,30 +91,30 @@ img {
 <script>
 // ----------------- Texte für Sabine -----------------
 const texts = {
-  1: "Ballett Mahler X Drei Meister",
-  2: "Wielandshöhe",
-  3: "Obereggen Latemar",
-  4: "Obereggen Zischghof",
-  5: "Obereggen Latemar",
-  6: "Dialog im Museum",
-  7: "Chaumont",
-  8: "Chaumont",
-  9: "Château d'Amboise",
- 10: "Château Villandry",
- 11: "Nantes",
- 12: "Nantes",
- 13: "Vannes",
- 14: "Vannes",
- 15: "Rochefort-en-Terre",
- 16: "Concarneau",
- 17: "Penmarch",
- 18: "Penmarch",
- 19: "Pointe du Raz",
- 20: "Huelgoat",
- 21: "Le Mans",
- 22: "Mozart Requiem Paulus Kirche",
- 23: "Coburg",
- 24: "Frohe Weihnachten"
+  1: "",
+  2: "",
+  3: "",
+  4: "",
+  5: "",
+  6: "",
+  7: "",
+  8: "",
+  9: "",
+ 10: "",
+ 11: "",
+ 12: "",
+ 13: "",
+ 14: "",
+ 15: "",
+ 16: "",
+ 17: "",
+ 18: "",
+ 19: "",
+ 20: "",
+ 21: "",
+ 22: "",
+ 23: "",
+ 24: "Frohe Weihnachten - Vorschau auf Januar 2026"
 };
 
 // ----------------- Random-Shuffle -----------------
@@ -138,7 +138,7 @@ doors.forEach(n => {
     d.setAttribute("data-door", n);
 
     // Bereits geöffnete Türchen markieren
-    if (localStorage.getItem("sabine_door_" + n) === "opened") {
+    if (localStorage.getItem("sonja_door_" + n) === "opened") {
         d.classList.add("opened");
     }
 
@@ -162,7 +162,7 @@ function openDoor(n){
     '</p>';
 
   // Zustand speichern
-  localStorage.setItem("sabine_door_" + n, "opened");
+  localStorage.setItem("sonja_door_" + n, "opened");
 
   // Optik ändern
   const elem = document.querySelector('[data-door="'+n+'"]');
