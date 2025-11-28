@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Adventskalender 2025 für Sonja</title>
+
+<style>
+body {
+    font-family: sans-serif;
+    background: #f5efe6;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin: 20px;
+}
+
+/* Türchen-Design */
+.door {
+    background: linear-gradient(135deg, #8b0000, #b30000);
+    color: #fffbe6;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 22px;
+    font-family: "Georgia", serif;
+    border: 2px solid gold;
+    text-shadow: 0 0 5px rgba(255,255,255,0.7);
+    box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* GOLD-GLOW beim Hover */
+.door:hover {
+    transform: scale(1.12);
+    box-shadow:
+        0 0 15px rgba(255,215,0,0.7),
+        0 0 30px rgba(255,215,0,0.5),
+        0 0 45px rgba(255,215,0,0.3);
+}
+
+/* Geöffnete Türchen (persistent) */
+.opened {
+    background: #aaaaaa !important;
+    color: #ffffff;
+    opacity: 0.6;
+    box-shadow: none !important;
+    transform: none !important;
+    cursor: default;
+}
+
+/* Schneefall */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 1em;
+  user-select: none;
+  pointer-events: none;
+  z-index: 9999;
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  0% { transform: translateY(-10vh); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* Bilder responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Adventskalender 2025 für Sonja</h1>
+
+<!-- Random generierte Türchen -->
+<div class="grid" id="kalender"></div>
+
+<div id="content"></div>
+
+<script>
+// ----------------- Texte für Sonja -----------------
+const texts = {
+  1: "",
+  2: "",
+  3: "",
+  4: "",
+  5: "",
+  6: "",
+  7: "",
+  8: "",
+  9: "",
+ 10: "",
+ 11: "",
+ 12: "",
+ 13: "",
+ 14: "",
+ 15: "",
+ 16: "",
+ 17: "",
+ 18: "",
+ 19: "",
+ 20: "",
+ 21: "",
+ 22: "",
+ 23: "",
+ 24: "Frohe Weihnachten - ein Ausblick auf Januar 2026"
+};
+
+// ----------------- Random-Shuffle -----------------
+const container = document.getElementById("kalender");
+let doors = [];
+
+// Liste 1–24 anlegen
+for (let i = 1; i <= 24; i++) doors.push(i);
+
+// Mischen (Fisher-Yates)
+for (let i = doors.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [doors[i], doors[j]] = [doors[j], doors[i]];
+}
+
+// Türchen rendern
+doors.forEach(n => {
+    const d = document.createElement("div");
+    d.className = "door";
+    d.innerText = n;
+    d.setAttribute("data-door", n);
+
+    // Bereits geöffnete Türchen markieren
+    if (localStorage.getItem("sonja_door_" + n) === "opened") {
+        d.classList.add("opened");
+    }
+
+    d.onclick = () => openDoor(n);
+    container.appendChild(d);
+});
+
+// ----------------- Tür öffnen -----------------
+function openDoor(n){
+  const today = new Date();
+  const day = today.getDate();
+  if(day < n){
+    alert("Erst am " + n + ". Dezember geöffnet!");
+    return;
+  }
+
+  document.getElementById('content').innerHTML =
+    '<img src="img_' + String(n).padStart(2, "0") + '.jpeg">' +
+    '<p style="font-size: 1.4em; margin-top: 15px; text-align: center;">' +
+    (texts[n] || "") +
+    '</p>';
+
+  // Zustand speichern
+  localStorage.setItem("sonja_door_" + n, "opened");
+
+  // Optik ändern
+  const elem = document.querySelector('[data-door="'+n+'"]');
+  if (elem) elem.classList.add("opened");
+}
+
+// ----------------- Schneefall -----------------
+function createSnowflake() {
+    const snow = document.createElement("div");
+    snow.classList.add("snowflake");
+    snow.innerHTML = "❄";
+    snow.style.left = Math.random() * 100 + "vw";
+    snow.style.fontSize = (Math.random() * 12 + 10) + "px";
+    const duration = Math.random() * 5 + 4;
+    snow.style.animationDuration = duration + "s";
+    document.body.appendChild(snow);
+    setTimeout(() => snow.remove(), duration * 1000);
+}
+
+// alle 200 ms eine Flocke
+setInterval(createSnowflake, 200);
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Adventskalender 2025 für Sonja</title>
+<style>
+body {
+    font-family: sans-serif;
+    background: #f5efe6;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin: 20px;
+}
+
+.door {
+    background: linear-gradient(135deg, #8b0000, #b30000);
+    color: #fffbe6;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 22px;
+    font-family: "Georgia", serif;
+    border: 2px solid gold;
+    text-shadow: 0 0 5px rgba(255,255,255,0.7);
+    box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.door:hover {
+    transform: scale(1.07);
+    box-shadow: 0 0 20px rgba(255,215,0,0.7);
+}
+
+/* WICHTIG: Bild immer responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+</style>
+</head>
+
+<body>
+<h1>Adventskalender 2025 für Sonja</h1>
+
+<!-- Random erzeugte Türchen kommen hier rein -->
+<div class="grid" id="kalender"></div>
+
+<div id="content"></div>
+
+<script>
+// ---- Texte unter den Bildern ----
+const texts = {
+  1: "",
+  2: "",
+  3: "",
+  4: "",
+  5: "",
+  6: "",
+  7: "",
+  8: "",
+  9: "",
+ 10: "",
+ 11: "",
+ 12: "",
+ 13: "",
+ 14: "",
+ 15: "",
+ 16: "",
+ 17: "",
+ 18: "",
+ 19: "",
+ 20: "",
+ 21: "",
+ 22: "",
+ 23: "",
+ 24: "Frohe Weihnachten - ein Ausblick auf den Januar"
+};
+
+// ---- Random-Shuffle erzeugen ----
+const container = document.getElementById("kalender");
+let doors = [];
+
+// Liste 1–24 erstellen
+for (let i = 1; i <= 24; i++) {
+    doors.push(i);
+}
+
+// Fisher–Yates Shuffle
+for (let i = doors.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [doors[i], doors[j]] = [doors[j], doors[i]];
+}
+
+// Türchen ins Grid schreiben
+doors.forEach(n => {
+    const d = document.createElement("div");
+    d.className = "door";
+    d.innerText = n;
+    d.onclick = () => openDoor(n);
+    container.appendChild(d);
+});
+
+// ---- Tür öffnen ----
+function openDoor(n){
+  const today = new Date();
+  const day = today.getDate();
+  if(day < n){
+    alert("Erst am " + n + ". Dezember geöffnet!");
+    return;
+  }
+  document.getElementById('content').innerHTML =
+    '<img src="img_'+String(n).padStart(2,'0')+'.jpeg">' +
+    '<p style="font-size: 1.4em; margin-top: 15px; text-align: center;">' +
+    (texts[n] || "") +
+    '</p>';
+}
+</script>
+
+</body>
+</html>
